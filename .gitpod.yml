@@ -1,19 +1,44 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
   - init: |
-      docker-compose pull
-  - command: |
-      docker-compose up
+      echo -e "\033[1;44m Gitpod Workspace \033[0m"
+      echo -e "\033[0;33m by Alerox, 2022 \033[0m"
+      url=$(node -e "console.log(require('process').env.GITPOD_WORKSPACE_URL)") && echo $url
+      echo docker run -it --rm --name mqtt-subscriber --network default efrecon/mqtt-client sub -h mosquitto -t "/#"
+      echo docker run -it --rm --name mqtt-publisher --network default efrecon/mqtt-client pub -h mosquitto -m "123" -t "/test"
+      node -e "console.log( require('os').version() )"
+      (gp ports list 2> /dev/null) || true
+      gp top
+    command: |
+      echo -e "\033[0;32mGenerate SHA-3 hash (Keccak)\033[0m"
+      node -e "console.log( require('crypto').createHash('sha3-256').update('123').digest('hex') )"
 
 
 ports:
-  - port: 1026
+  - name: Orion
+    port: 1026
     onOpen: ignore
-  - port: 1880
-    onOpen: open-browser
-  - port: 3005
+  - name: Node-RED
+    port: 1880
     onOpen: open-preview
-  - port: 8745
+  - name: MQTT
+    port: 1883
     onOpen: ignore
-  - port: 27127
+  - name: Express / Grafana
+    port: 3000
     onOpen: ignore
-
+  - name: Keyrock
+    port: 3005
+    onOpen: ignore
+  - name: Ganache
+    port: 7545
+    onOpen: ignore
+  - name: Hardhat
+    port: 8545
+    onOpen: ignore
+  - name: Chronagraf
+    port: 8888
+    onOpen: ignore
+  - name: Mongo
+    port: 27127
+    onOpen: ignore
