@@ -14,30 +14,32 @@ tasks:
       node -e "console.log( require('crypto').createHash('sha3-256').update('123').digest('hex') )"
 
 
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
-  - name: Orion
-    port: 1026
-    onOpen: ignore
   - name: Node-RED
     port: 1880
-    onOpen: open-preview
-  - name: MQTT
-    port: 1883
-    onOpen: ignore
-  - name: Express / Grafana
-    port: 3000
+    onOpen: open-preview # open-browser
+    visibility: public
+  - name: Orion
+    port: 1026
+    onOpen: notify
+  - name: Wilma
+    port: 1027
     onOpen: ignore
   - name: Keyrock
     port: 3005
+    onOpen: ignore
+  - name: MQTT
+    port: 1883
+    onOpen: ignore
+  - name: Express
+    port: 3000
     onOpen: ignore
   - name: Ganache
     port: 7545
     onOpen: ignore
   - name: Hardhat
     port: 8545
-    onOpen: ignore
-  - name: Chronagraf
-    port: 8888
     onOpen: ignore
   - name: Mongo
     port: 27127
