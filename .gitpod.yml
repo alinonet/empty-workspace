@@ -4,9 +4,7 @@ tasks:
       # docker compose pull
       echo -e "\033[1;44m Gitpod Workspace \033[0m"
       echo -e "\033[0;33m by Alerox, 2022 \033[0m"
-      url=$(node -e "console.log(require('process').env.GITPOD_WORKSPACE_URL)") && echo $url
-      echo docker run -it --rm --name mqtt-subscriber --network default efrecon/mqtt-client sub -h mosquitto -t "/#"
-      echo docker run -it --rm --name mqtt-publisher --network default efrecon/mqtt-client pub -h mosquitto -m "123" -t "/test"
+      url=$(node -e "console.log( require('process').env.GITPOD_WORKSPACE_URL )") && echo $url
       node -e "console.log( require('os').version() )"
       (gp ports list 2> /dev/null) || true
       gp top
