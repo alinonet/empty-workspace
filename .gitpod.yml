@@ -2,11 +2,11 @@
 tasks:
   - init: |
       # docker compose pull
+      node -e "console.log( require('os').version() )"
       gp top
       echo -e "\033[1;44m Gitpod Workspace \033[0m"
       echo -e "\033[0;33m by Alerox, 2022 \033[0m"
       url=$(node -e "console.log( require('process').env.GITPOD_WORKSPACE_URL )") && echo $url
-      node -e "console.log( require('os').version() )"
       (gp ports list 2> /dev/null) || true
     command: |
       # docker compose up
@@ -51,6 +51,9 @@ ports:
     onOpen: ignore
   - name: MySQL
     port: 3306
+    onOpen: ignore
+  - name: Influx
+    port: 8086
     onOpen: ignore
   - name: Mongo
     port: 27017
