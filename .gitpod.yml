@@ -2,17 +2,14 @@
 tasks:
   - init: |
       # docker compose pull
-      node -e "console.log( require('os').version() )"
-      gp top
       echo -e "\033[1;44m Gitpod Workspace \033[0m"
       echo -e "\033[0;33m by Alerox, 2022 \033[0m"
+      node -e "console.log( require('os').version() )"
       url=$(node -e "console.log( require('process').env.GITPOD_WORKSPACE_URL )") && echo $url
-      (gp ports list 2> /dev/null) || true
     command: |
       # docker compose up
-      echo -e "\033[0;32mGenerate SHA-3 hash (Keccak)\033[0m"
-      node -e "console.log( require('crypto').createHash('sha3-256').update('123').digest('hex') )"
-
+      (gp ports list 2> /dev/null) || true
+      gp top
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
