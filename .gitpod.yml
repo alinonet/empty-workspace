@@ -9,7 +9,7 @@ tasks:
     command: |
       # docker compose up
       (gp ports list 2> /dev/null) || true
-      gp top
+      gp info
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
@@ -26,8 +26,11 @@ ports:
     port: 1027
     onOpen: ignore
   - name: Keyrock
-    description: FIWARE PEP IdM
+    description: FIWARE IdM
     port: 3005
+    onOpen: ignore
+  - name: KeyCloak
+    port: 8080
     onOpen: ignore
   - name: MQTT
     port: 1883
@@ -37,7 +40,7 @@ ports:
     port: 9001
     onOpen: ignore
     visibility: public
-  - name: Express / Grafana
+  - name: Grafana
     port: 3000
     onOpen: ignore
   - name: Ganache
