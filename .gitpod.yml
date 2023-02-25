@@ -5,56 +5,17 @@ tasks:
       gp info
       node -e "console.log( require('os').version() )"
       url=$(node -e "console.log( require('process').env.GITPOD_WORKSPACE_URL )") && echo $url
-    command: |
+      (gp ports list 2> /dev/null) || true
+  - command: |
       # docker compose up
       echo -e "\033[1;44m Gitpod Workspace \033[0m"
       echo -e "\033[0;33m by Alerox, 2022 \033[0m"
-      (gp ports list 2> /dev/null) || true
+      echo
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
-  - description: Node-RED
+  - name: Node-RED
+    description: Flow programming
     port: 1880
-    onOpen: open-preview # open-browser
+    onOpen: notify # open-browser # open-preview
     visibility: public
-  - description: Orion Context Broker
-    port: 1026
-    onOpen: notify
-  - description: Wilma PEP Proxy
-    port: 1027
-    onOpen: ignore
-  - description: Keyrock IdM
-    port: 3005
-    onOpen: ignore
-  - description: KeyCloak
-    port: 8080
-    onOpen: ignore
-  - description: MQTT Broker
-    port: 1883
-    onOpen: ignore
-    visibility: public
-  - description: MQTT over Websocket
-    port: 9001
-    onOpen: ignore
-    visibility: public
-  - description: Grafana
-    port: 3000
-    onOpen: ignore
-  - description: Ganache Truffle chain
-    port: 7545
-    onOpen: ignore
-  - description: Hardhat
-    port: 8545
-    onOpen: ignore
-  - description: MySQL Server
-    port: 3306
-    onOpen: ignore
-  - description: InfluxDB Server
-    port: 8086
-    onOpen: ignore
-  - description: MongoDB Server
-    port: 27017
-    onOpen: ignore
-  - description: MongoExpress
-    port: 8081
-    onOpen: ignore
